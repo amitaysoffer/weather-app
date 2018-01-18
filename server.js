@@ -8,12 +8,11 @@ const app = express();
 app.use(express.static('public'));
 app.use(express.static(__dirname + '/node_modules'));
 
-app.get('/weathercity-app.herokuapp.com/weather/:location', function (req, res) {
+app.get('/weather/:location', function (req, res) {
     const url = `https://www.theweathernetwork.com/ca/search?q=${req.params.location}`
 
     request(url, function (error, response, html) {
         if (!error) {
-            // utilize the cheerio library on the returned html which will essentially give us jQuery functionality
             var $ = cheerio.load(html);
             var exact_match = $('.exact_match');
             if (exact_match.length > 0) {
@@ -26,6 +25,7 @@ app.get('/weathercity-app.herokuapp.com/weather/:location', function (req, res) 
         const url_next = `https://www.theweathernetwork.com${url1}`;
         console.log(url_next);
 
+        // phantom 
         (async function () {
             const instance = await phantom.create();
             const page = await instance.createPage();
@@ -58,7 +58,7 @@ app.get('/weathercity-app.herokuapp.com/weather/:location', function (req, res) 
 
 const port = 8080;
 app.listen(process.env.PORT || port, () => {
-    console.log(`Running port on ${port}`)
+    console.log(`Running server on port ${port}`)
 });
 
 

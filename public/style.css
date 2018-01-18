@@ -9,12 +9,15 @@
     font-family: 'Slabo 27px', sans-serif;
     border-radius: 5px;
     margin-bottom:20px;
-    
+}
+.spinner{
+    width: 70px;
+    height: 70px;
+    display: none;
 }
 .align{
   margin:20 20 10px;
 }
-
 .cities::after{
     top: 100%;
     left: 10%;
@@ -27,20 +30,10 @@
 }
 .comments{
     box-sizing: border-box;
-    border:1px solid #428bca;
+    border:2px solid #428bca;
     margin:0 15px 10px;
     border-radius: 5px;
 }
-.fa-trash-o{
-    position:absolute;
-    top: 15px;
-    right: 15px;
-    color:red;
-}
-.fa-circle-o{
-    font-size:7px;
-}
-
 .container-fluid{
     margin:0 30px;
 }
