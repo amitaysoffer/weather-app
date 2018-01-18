@@ -1,18 +1,14 @@
 const express = require('express')
-const request = require('request'); // make HTTP requests
-const cheerio = require('cheerio'); // Implementation of core jQuery specifically for the server
+const request = require('request');
+const cheerio = require('cheerio');
 const phantom = require('phantom');
 
 const app = express();
-
-
-
 
 app.use(express.static('public'));
 app.use(express.static(__dirname + '/node_modules'));
 
 app.get('/weather/:location', function (req, res) {
-    // try{
     const url = `https://www.theweathernetwork.com/ca/search?q=${req.params.location}`
 
     request(url, function (error, response, html) {
@@ -26,7 +22,6 @@ app.get('/weather/:location', function (req, res) {
                 var url1 = $($('ul .result')[0]).find('a').attr('href');
             }
             console.log(url1);
-
         }
         const url_next = `https://www.theweathernetwork.com${url1}`;
         console.log(url_next);
@@ -61,9 +56,9 @@ app.get('/weather/:location', function (req, res) {
 });
 
 
-
-app.listen(8080, () => {
-    console.log('Running on 8080')
+const port = 8080;
+app.listen(process.env.PORT || port, () => {
+    console.log(`Running port on ${port}`)
 });
 
 
