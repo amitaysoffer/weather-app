@@ -1,0 +1,71 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+    <title>Weather Chat</title>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="page-header">
+            <h1>Weather Chat</h1>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="input-group form-group">
+                        <input id="userInput" type="text" class="form-control" placeholder="Search City">
+                        <span class="input-group-btn">
+                            <button id="search" class="btn btn-primary" type="button">
+                                <i class="fa fa-search"></i> Search For Temp</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container postCities">
+
+    </div>
+
+    <script id="store-template" type="text/x-handlebars-template">
+        <div class="row align post">
+            <div class="col-xs-12 cities">
+                <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                <div class="cityName">{{locationName}} <img class="weather-icon" src="{{icon}}"></div>
+                <div class="currentTemp"><span>  {{condition}} at {{date}}<span></div>
+                                <hr>
+                <div>
+                      <div class="currentTemp"><span><i class="fa fa-thermometer-empty"></i> Current temp: {{temparature}} <span></div> 
+                                    <span class="block humidity"><i class="fa fa-tint"></i> Humidity: {{humidity}}  </span>
+                    <span class="block pressure"><i class="fa fa-cloud"></i> Wind Speed: {{windSpeed}} </span>
+                    <!-- <span class="block highLow"><i class="fa fa-cloud"></i> Low:{{minTempC}}°C /<i class="fa fa-sun-o"></i> High:{{maxTempC}}°C </span> -->
+                </div>
+                <div class=" align input-group">
+                        <input type="text" class="form-control" placeholder="Comment about the weather in {{locationName}}">
+                        <span class="input-group-btn">
+                                <button class="btn btn-success commentButton" type="button">Comment</button>
+                        </span>
+        
+                    </div>
+                    <div style="margin-left:15px;">Comments:</div>
+                    <div class="comments">
+                        {{#each comments}}
+                        <div>{{this}}</div>
+                        {{/each}}
+                    </div>
+            </div>
+        </div>
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcrziC5YUCRtuqnocJxE4zg0ubcmnN9Tw&libraries=places"></script>
+    <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="handlebars/dist/handlebars.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>
