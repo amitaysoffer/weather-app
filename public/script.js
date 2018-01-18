@@ -14,7 +14,7 @@ function RemoveCountriesStrFromLocation(full_input) { // NOTE: takes the first c
 function fetch(currentCity) {
     $.ajax({
         method: 'GET',
-        url: 'https://weathercity-app.herokuapp.com/weather/' + RemoveCountriesStrFromLocation(currentCity) + '',
+        url: '/weathercity-app.herokuapp.com/weather/' + RemoveCountriesStrFromLocation(currentCity) + '',
         success: function (data) {
 
             userCities.push(data);

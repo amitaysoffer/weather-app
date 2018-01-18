@@ -8,7 +8,7 @@ const app = express();
 app.use(express.static('public'));
 app.use(express.static(__dirname + '/node_modules'));
 
-app.get('https://weathercity-app.herokuapp.com/weather/:location', function (req, res) {
+app.get('/weathercity-app.herokuapp.com/weather/:location', function (req, res) {
     const url = `https://www.theweathernetwork.com/ca/search?q=${req.params.location}`
 
     request(url, function (error, response, html) {
