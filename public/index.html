@@ -37,7 +37,7 @@
     <script id="store-template" type="text/x-handlebars-template">
         <div class="row align post">
             <div class="col-xs-12 cities">
-                <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                <i aria-hidden="true"></i>
                 <div class="cityName">{{locationName}} <img class="weather-icon" src="{{icon}}"></div>
                 <div class="currentTemp"><span>  {{condition}} at {{date}}<span></div>
                                 <hr>
@@ -46,7 +46,7 @@
                                     <span class="block humidity"><i class="fa fa-tint"></i> Humidity: {{humidity}}  </span>
                     <span class="block pressure"><i class="fa fa-cloud"></i> Wind Speed: {{windSpeed}} </span>
                 </div>
-                <div class=" align input-group">
+                <div class="align input-group">
                         <input type="text" class="form-control" placeholder="Comment about the weather in {{locationName}}">
                         <span class="input-group-btn">
                                 <button class="btn btn-success commentButton" type="button">Comment</button>

@@ -1,22 +1,22 @@
 // var currentCity;
-var userCities=[];
+var userCities = [];
 
- function RemoveCountriesStrFromLocation(full_input) { // NOTE: takes the first city name
+function RemoveCountriesStrFromLocation(full_input) { // NOTE: takes the first city name
     var result = full_input;
     var indexOfFirstComma = full_input.indexOf(",");
     if (indexOfFirstComma > 0) { // Comma exists
-      var result = full_input.substring(0, indexOfFirstComma);
+        var result = full_input.substring(0, indexOfFirstComma);
     }
 
     return result;
- }
+}
 
 function fetch(currentCity) {
     $.ajax({
-        method:'GET',
-        url: '/weather/'+RemoveCountriesStrFromLocation(currentCity)+'',
+        method: 'GET',
+        url: 'https://weathercity-app.herokuapp.com/weather/' + RemoveCountriesStrFromLocation(currentCity) + '',
         success: function (data) {
-    
+
             userCities.push(data);
             console.log(userCities);
             _renderCityTemps(userCities);
@@ -31,15 +31,15 @@ function fetch(currentCity) {
 function grabUserData() {
     currentCity = $("#userInput").val();
     $("#userInput").val('');
-    
+
 }
 
-function _renderCityTemps(userCities){
+function _renderCityTemps(userCities) {
     $('.postCities').empty();
     var source = $('#store-template').html();
     var template = Handlebars.compile(source);
-    
-    userCities.forEach(function(city){
+
+    userCities.forEach(function (city) {
         var newHTML = template(city);
         $('.postCities').append(newHTML);
     });
@@ -66,15 +66,23 @@ function renderComments(postIndex) {
     });
 };
 
-$('.postCities').on('click','.commentButton', function(){
-   var commentText = $(this).offsetParent().siblings('input').val();
-   $(this).offsetParent().siblings('input').val('');
+$('.postCities').on('click', '.commentButton', function () {
+    var commentText = $(this).offsetParent().siblings('input').val();
+    $(this).offsetParent().siblings('input').val('');
 
     var postIndex = $('.commentButton').index($(this));
 
     createComment(postIndex, commentText);
 });
 
+$('#userInput').keypress(function (e) {
+    var key = e.which;
+    if (key === 13) {
+        grabUserData();
+        fetch(currentCity);
+    }
+
+})
 
 $("#search").on('click', function () {
     grabUserData();
